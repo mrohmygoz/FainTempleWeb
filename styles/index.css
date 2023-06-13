@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+TC");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-[#f3e8eb] font-NotoSans text-[#433e48]
+    }
+
+    footer {
+        @apply bg-[#dbc1ad] border-t border-neutral-200
+    }
+
+    /* navbar logo */
+    h1 {
+        @apply text-5xl md:text-7xl font-bold tracking-tighter leading-tight
+    }
+
+    /* section title & post title */
+    h2 {
+        @apply mb-12 text-5xl md:text-[4rem] font-bold tracking-tighter leading-tight
+    }
+
+    /* contact us */
+    h3 {
+        @apply text-4xl md:text-6xl font-bold tracking-tighter leading-tight
+    }
+
+    /* post preview title */
+    h4 {
+        @apply mb-3 text-3xl leading-snug
+    }
+
+    /* navbar */
+    ul.navbar {
+        @apply border-y-black border-y-[1px] py-1
+    }
+
+    /* navbar */
+    li.navbar {
+        @apply m-2 text-xl tracking-tighter leading-tight hover:text-[#433e4836]
+    }
+
+    section {
+        @apply py-12
+    }
+
+    table {
+        @apply table-auto border-collapse w-full 
+    }
+    
+    th {
+        @apply py-2 px-6 text-xl font-extrabold bg-[#928490d0] text-[#f5f1f2] tracking-widest text-left
+    }
+
+    td {
+        @apply py-4 px-6 text-xl
+    }
+
+    tr {
+        @apply border-2 border-[#f3e8eb]
+    }
+}
