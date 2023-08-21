@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
 import ProductType from '../interfaces/product'
+import {v4 as uuidv4} from 'uuid';
 
 const LOCAL_STORAGE_ID_FAIN_CHECKOUT = 'fain_checkout'
 
@@ -25,7 +26,7 @@ export default function CartProvider({ children }) {
 
     if (cart.length === 0) {
       setCart([newCartProduct])
-      const checkoutId = new Date().toISOString()
+      const checkoutId = uuidv4().substring(0, 8).toUpperCase()
       setCheckoutId(checkoutId)
       localStorage.setItem(LOCAL_STORAGE_ID_FAIN_CHECKOUT, 
         JSON.stringify({

@@ -1,4 +1,4 @@
-import Layout from "../components/layout2";
+import Layout from "../components/layout";
 import FooterType from "../interfaces/footer";
 import Container from "../components/container";
 import markdownToHtml from "../lib/markdownToHtml";

@@ -23,15 +23,20 @@ export default function Navbar() {
                     </Link>
 
                     <ul className="navbar flex">
-                        <NavbarItem title='關於法印' link='/about' />
+                        <NavbarItem title='佛菩薩開示法語' link='/enlightments' />
+                        <li className="nav-group-parent relative group">
+                            <Link className="hover:text-[#433e4836]" href="/teacher">蔡君如老師</Link>
+                            <ul className="absolute pt-4 hidden group-hover:block truncate">
+                                <Link href='/teacher-blog'><li className="nav-group-item">蔡老師之輕聲細語</li></Link>
+                                <Link href='/services'><li className="nav-group-item">服務項目</li></Link>
+                            </ul>
+                        </li>
                         <NavbarItem title='最新消息' link='/posts' />
-                        <NavbarItem title='服務項目' link='/services' />
-                        <NavbarItem title='蔡君如老師' link='/teacher' />
                         <a href='https://academy.fain.tw'>
-                            <li className="navbar">法印光能學會</li>
+                            <li className="nav-item">法印光能學會</li>
                         </a>
                         <NavbarItem title='身心靈產品' link='/shop' />
-                        <li className="navbar">
+                        <li className="nav-item">
                             <div className="flex justify-normal items-center">
                                 <AiOutlineShoppingCart />
                                 <button onClick={() => setCartOpen(true)}>

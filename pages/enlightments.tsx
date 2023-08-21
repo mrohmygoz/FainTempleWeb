@@ -1,35 +1,35 @@
-import PostGallery from '../components/post-gallery'
-import Layout from '../components/layout'
-import Post from '../interfaces/post'
+import EnlightmentType from '../interfaces/enlightment'
 import Container from '../components/container'
 import SectionTitle from '../components/section-title'
-import Link from 'next/link'
-import { getPosts, getFooter } from '../lib/strapi'
-import FooterType from '../interfaces/footer'
 import markdownToHtml from '../lib/markdownToHtml'
+import Link from 'next/link'
+import { getEnlightments, getFooter } from '../lib/strapi'
+import FooterType from '../interfaces/footer'
+import Layout from '../components/layout'
+import EnlightmentsGallery from '../components/enlightments-gallery'
 
 type Props = {
-  allPosts: Post[], 
-  footer: FooterType
+    allEnlightments: EnlightmentType[],
+    footer: FooterType
 }
 
-export default function Posts({ allPosts, footer }: Props) {
+export default function Enlightments({ allEnlightments, footer }: Props) {
     return (
       <>
         <Layout footer={footer}>
           <Container>
             <section>
               <SectionTitle>
-                最新消息
+                佛菩薩開示法語
               </SectionTitle>
 
-              {allPosts.length > 0 && 
-                <PostGallery posts={allPosts} />
+              {allEnlightments.length > 0 && 
+                <EnlightmentsGallery enlightments={allEnlightments} />
               }
 
-              {allPosts.length == 0 && 
+              {allEnlightments.length == 0 && 
                 <div className='pb-10 text-2xl tracking-widest italic text-[#433e489f]'>
-                  目前尚無任何消息，敬請期待更多消息！
+                  目前暫無佛菩薩開示法語
                 </div>
               }
               
@@ -49,11 +49,17 @@ export default function Posts({ allPosts, footer }: Props) {
 }
 
 export const getStaticProps = async () => {
-  const allPosts = await getPosts()
+  const allEnlightments = await getEnlightments()
+
+  for (let i=0; i<allEnlightments.length; i++) {
+    allEnlightments[i].content = await markdownToHtml(allEnlightments[i].content || '')
+  }
+
   const footer = await getFooter()
   footer.content = await markdownToHtml(footer.content || '')
-  
+
   return {
-    props: { allPosts, footer },
+    props: { allEnlightments, footer },
+    revalidate: Number(process.env.REVALIDATE_SECONDS)
   }
 }

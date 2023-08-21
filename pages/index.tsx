@@ -1,4 +1,4 @@
-import Layout from '../components/layout2'
+import Layout from '../components/layout'
 import Post from '../interfaces/post'
 import Intro from '../components/intro'
 import markdownToHtml from '../lib/markdownToHtml'

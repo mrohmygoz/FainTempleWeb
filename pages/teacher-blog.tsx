@@ -1,35 +1,36 @@
-import PostGallery from '../components/post-gallery'
 import Layout from '../components/layout'
-import Post from '../interfaces/post'
 import Container from '../components/container'
 import SectionTitle from '../components/section-title'
 import Link from 'next/link'
-import { getPosts, getFooter } from '../lib/strapi'
+import { getFooter, getTeacherBlogPosts } from '../lib/strapi'
 import FooterType from '../interfaces/footer'
 import markdownToHtml from '../lib/markdownToHtml'
+import markdownToPlain from '../lib/markdownToPlain'
+import TeacherBlogPostType from '../interfaces/teacherBlogPost'
+import TeacherBlogGallery from '../components/teacher-blog-gallery'
 
 type Props = {
-  allPosts: Post[], 
+  allPosts: TeacherBlogPostType[], 
   footer: FooterType
 }
 
-export default function Posts({ allPosts, footer }: Props) {
+export default function TeacherBlog({ allPosts, footer }: Props) {
     return (
       <>
         <Layout footer={footer}>
           <Container>
             <section>
               <SectionTitle>
-                最新消息
+                蔡老師之輕聲細語
               </SectionTitle>
 
               {allPosts.length > 0 && 
-                <PostGallery posts={allPosts} />
+                <TeacherBlogGallery teacherBlogPosts={allPosts} />
               }
 
               {allPosts.length == 0 && 
                 <div className='pb-10 text-2xl tracking-widest italic text-[#433e489f]'>
-                  目前尚無任何消息，敬請期待更多消息！
+                  目前尚無任何內容。
                 </div>
               }
               
@@ -49,7 +50,11 @@ export default function Posts({ allPosts, footer }: Props) {
 }
 
 export const getStaticProps = async () => {
-  const allPosts = await getPosts()
+  const allPosts = await getTeacherBlogPosts()
+  allPosts.forEach(async function (post) {
+    post.content = await markdownToPlain(post.content || '')
+  })
+
   const footer = await getFooter()
   footer.content = await markdownToHtml(footer.content || '')
   

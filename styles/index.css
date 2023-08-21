@@ -40,8 +40,18 @@
     }
 
     /* navbar */
-    li.navbar {
+    li.nav-item {
         @apply m-2 text-xl tracking-tighter leading-tight hover:text-[#433e4836]
+    }
+
+    /* navbar group */
+    li.nav-group-parent {
+        @apply m-2 text-xl tracking-tighter leading-tight 
+    }
+
+    /* navbar group */
+    li.nav-group-item {
+        @apply py-2 text-xl tracking-tighter leading-tight hover:text-[#433e4836]
     }
 
     section {
@@ -62,5 +72,13 @@
 
     tr {
         @apply border-2 border-[#f3e8eb]
+    }
+
+    label {
+        @apply text-3xl font-extrabold pb-4 pt-8
+    }
+
+    input {
+        @apply p-4 my-2 rounded-md shadow-sm
     }
 }

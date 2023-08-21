@@ -1,56 +1,46 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
 import Container from '../../components/container'
-import PostBody from '../../components/post-body'
-import PostHeader from '../../components/post-header'
 import Layout from '../../components/layout'
 import markdownToHtml from '../../lib/markdownToHtml'
-import type PostType from '../../interfaces/post'
-import SectionTitle from '../../components/section-title'
 import Link from 'next/link'
-import { getPost, getPostSlugs, getFooter } from '../../lib/strapi'
+import { getFooter, getTeacherBlogPost, getTeacherBlogPostSlugs } from '../../lib/strapi'
 import FooterType from '../../interfaces/footer'
+import TeacherBlogPostType from '../../interfaces/teacherBlogPost'
+import TeacherBlogPostBody from '../../components/teacher-blog-post-body'
+import TeacherBlogPostHeader from '../../components/teacher-blog-post-header'
 
 
 type Props = {
-  post: PostType
-  preview?: boolean
+  teacherBlogPost: TeacherBlogPostType
   footer: FooterType
 }
 
-export default function Post({ post, preview, footer }: Props) {
+export default function Post({ teacherBlogPost, footer }: Props) {
   const router = useRouter()
 
   if (router.isFallback) {
     return <p>Loading...</p>
   }
 
-  if (!router.isFallback && !post?.slug) {
+  if (!router.isFallback && !teacherBlogPost?.slug) {
     return <ErrorPage statusCode={404} />
   }
   return (
     <Layout footer={footer}>
       <Container>
         <section className='mb-24'>
-          <SectionTitle>
-            最新消息｜{post.title}
-          </SectionTitle>
+          <TeacherBlogPostHeader teacherBlogPost={teacherBlogPost} />
 
-          <PostHeader
-            title={post.title}
-            coverImage={post.coverImage}
-            date={post.date}
-          />
-
-          <PostBody 
-            content={post.content} 
+          <TeacherBlogPostBody 
+            content={teacherBlogPost.content} 
           />
 
           <button className='mt-8 py-4 px-6 border border-[#433e48] text-lg leading-snug
                           hover:bg-[#433e48] hover:text-[#f5f1f2] duration-200 transition-colors'>
-            <Link href='/posts'>
+            <Link href='/teacher-blog-posts'>
               <span>
-                點我查看更多消息 ＞
+                點我查看更多輕聲細語 ＞
               </span>
             </Link>
           </button>
@@ -67,16 +57,16 @@ type Params = {
 }
 
 export async function getStaticProps({ params }: Params) {
-  const post = await getPost(params.slug)
-  const content = await markdownToHtml(post.content || '')
+  const teacherBlogPost = await getTeacherBlogPost(params.slug)
+  const content = await markdownToHtml(teacherBlogPost.content || '')
 
   const footer = await getFooter()
   footer.content = await markdownToHtml(footer.content || '')
 
   return {
     props: {
-      post: {
-        ...post,
+      teacherBlogPost: {
+        ...teacherBlogPost,
         content,
       },
       footer: footer
@@ -85,13 +75,13 @@ export async function getStaticProps({ params }: Params) {
 }
 
 export async function getStaticPaths() {
-  const posts = await getPostSlugs()
+  const posts = await getTeacherBlogPostSlugs()
 
   return {
-    paths: posts.map((post) => {
+    paths: posts.map((teacherBlogPost) => {
       return {
         params: {
-          slug: post.slug,
+          slug: teacherBlogPost.slug,
         },
       }
     }),

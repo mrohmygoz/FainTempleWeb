@@ -1,6 +1,6 @@
 import Footer from './footer2'
 import Meta from './meta'
-import Navbar from '../components/navbar'
+import Navbar from './navbar'
 import FooterType from '../interfaces/footer'
 import ShoppingCart from './shopping-cart'
 import { useContext } from "react";
