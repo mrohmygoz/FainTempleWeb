@@ -107,6 +107,7 @@ export async function getStaticProps({ params }: Params) {
       product: product,
       footer: footer
     },
+    revalidate: Number(process.env.REVALIDATE_SECONDS)
   }
 }
 

@@ -7,11 +7,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     try {
         await res.revalidate('/')
-        await res.revalidate('/about')
-        await res.revalidate('/announcements')
-        await res.revalidate('/chairman')
-        await res.revalidate('/events')
-        await res.revalidate('/join')
+        await res.revalidate('/enlightments')
+        await res.revalidate('/posts')
+        await res.revalidate('/services')
+        await res.revalidate('/shop')
+        await res.revalidate('/teacher-blog')
+        await res.revalidate('/teacher')
         return res.json({ revalidated: true })
     } catch (err) {
         return res.status(500).send('Error revalidating')

@@ -16,7 +16,7 @@ export default function ShoppingCartSummary({ cart }) {
   return (
     <div className="px-4 py-6 border-t border-gray-200 sm:px-6">
       <div className="flex justify-between text-base font-medium text-gray-900">
-        <p>總計</p>
+        <p>總計台幣</p>
         <p>${getSubTotal()}</p>
       </div>
       <div className="mt-6 flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-black 
