@@ -14,8 +14,14 @@ const client = new SESClient({
 });
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  console.log('[INFO] Method: ' + req.method)
+  console.log('[INFO] URL: ' + req.url)
+  console.log('[INFO] Headers: ' + JSON.stringify(req.headers))
+  console.log('[INFO] Body: ' + JSON.stringify(req.body))
+
   const requestMethod = req.method;
   if (requestMethod !== 'POST') {
+    console.error('[ERROR] Method not allowed')
     res.status(405).json({ message: 'Method not allowed' });
     return;
   }
