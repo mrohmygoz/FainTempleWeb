@@ -39,7 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   var input = {
     Destination: { /* required */
       ToAddresses: [
-        body.email,
+        SES_SENDER,
         /* more items */
       ]
     },
@@ -64,12 +64,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 
 function getContent(body) {
-  const template = `<p>中文全名：##fullName##</p><p>寄送地址：##postalCode## ##country## ##city## ##address##</p><p>購買產品：</p>`
+  const template = `<p>中文全名：##fullName##</p><p>電子信箱：##email##</p><p>寄送地址：##postalCode## ##country## ##city## ##address##</p><p>購買產品：</p>`
   const itemTemplate = `<p style="margin-left:40px">##category##｜##name##（單價：##price##）x ##quantity##</p>`
   const subTotalTemplate = `<p>台幣總計：##subTotal##</p>`
   
   var content = template
     .replace('##fullName##', body.fullName)
+    .replace('##email##', body.email)
     .replace('##postalCode##', body.postalCode)
     .replace('##country##', body.country)
     .replace('##city##', body.city)

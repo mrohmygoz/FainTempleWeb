@@ -13,7 +13,8 @@ type IFormInput = {
   address: string;
 }
 
-const failMsg = '提交失敗，請重新提交，或聯絡我們。';
+const successMsg = '已成功送出訂單，將會有專人透過電子信箱聯繫您，協調運送事宜！';
+const failMsg = '提交訂單失敗，請重新提交，或聯絡我們。';
 const wrongFormatMsg = '您的表單尚未填寫完成，或內容有誤。';
 
 export default function Checkout() {
@@ -36,7 +37,7 @@ export default function Checkout() {
         body: JSON.stringify(body)
       })
       if (res.ok) {
-        alert('提交成功，付款方式將會寄至您的電子信箱！');
+        alert(successMsg);
         clearCart();
         router.push('/');
       } else {
