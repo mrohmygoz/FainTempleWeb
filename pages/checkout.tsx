@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import { CartContext } from "../../context/shop-context";
+import { useContext, useState } from "react";
+import { CartContext } from "../context/shop-context";
 import { useForm, SubmitHandler } from "react-hook-form";
-import CheckoutItem from "../../components/checkout-item";
-import ShoppingCartSummary from "../../components/shopping-cart-summary";
+import CheckoutItem from "../components/checkout-item";
+import { useRouter } from 'next/router'
 
 type IFormInput = {
   fullName: string;
@@ -13,13 +13,45 @@ type IFormInput = {
   address: string;
 }
 
-export default function Product() {
+const failMsg = '提交失敗，請重新提交，或聯絡我們。';
+const wrongFormatMsg = '您的表單尚未填寫完成，或內容有誤。';
+
+export default function Checkout() {
+  const { clearCart } = useContext(CartContext)
   const { register, handleSubmit, formState:{errors} } = useForm<IFormInput>();
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    alert('成功！')
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter()
+
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    try {
+      setIsSubmitting(true); // Set submitting state to true
+
+      const body = JSON.parse(JSON.stringify(data));
+      body.checkoutId = router.query.checkoutId;
+      body.cartItems = router.query.cart;
+      body.subTotal = router.query.subTotal;
+
+      const res = await fetch('/api/send-mail', {
+        method: 'POST',
+        body: JSON.stringify(body)
+      })
+      if (res.ok) {
+        alert('提交成功，付款方式將會寄至您的電子信箱！');
+        clearCart();
+        router.push('/');
+      } else {
+        alert(failMsg); // Show an error message
+      }
+    } catch (error) {
+      console.error("send-mail API call failed: ", error);
+      alert(failMsg); // Show an error message
+    } finally {
+      setIsSubmitting(false); // Reset submitting state
+    }
   };
+
   const onError = (errors, e) => {
-    alert('您的表單尚未填寫完成！')
+    alert(wrongFormatMsg)
   };
 
   const { cart } = useContext(CartContext)
@@ -89,7 +121,7 @@ export default function Product() {
               placeholder="地址"
               {...register("address", { required: '您尚未填寫地址' })} 
             />
-            <button type="submit" 
+            <button type="submit"
                     className="w-full bg-black text-white hover:bg-gray-800 
                               p-2 mt-8 rounded-md shadow-sm text-lg">
               提交表單
@@ -107,7 +139,7 @@ export default function Product() {
         </ul>
         <div className="mt-16 py-8 flex justify-between text-xl border-t-[1px] border-[#433e48]">
           <span>
-            總計（不含運費）
+            台幣總計（不含運費）
           </span>
           <span>
             ${getSubTotal()}

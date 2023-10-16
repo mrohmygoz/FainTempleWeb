@@ -4,7 +4,6 @@ import Link from 'next/link';
 
 export default function ShoppingCartSummary({ cart }) {
   const { checkoutId, setCartOpen, clearCart } = useContext(CartContext)
-
   function getSubTotal() {
     let total = 0
     for (let i=0; i<cart.length; i++) {
@@ -21,7 +20,16 @@ export default function ShoppingCartSummary({ cart }) {
       </div>
       <div className="mt-6 flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-black 
           border border-transparent rounded-md shadow-sm hover:bg-gray-800 cursor-pointer">
-        <Link href={`/checkout/${checkoutId}`} onClick={() => setCartOpen(false)}>
+        <Link 
+          href={{
+            pathname: '/checkout',
+            query: {
+              checkoutId: checkoutId,
+              cart: JSON.stringify(cart),
+              subTotal: getSubTotal()
+            }
+          }} 
+          onClick={() => setCartOpen(false)}>
           結帳
         </Link>
       </div>
