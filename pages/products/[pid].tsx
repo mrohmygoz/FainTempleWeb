@@ -55,7 +55,7 @@ export default function Product({ product, footer }: Props) {
                     <span className='text-3xl font-extrabold'>{product.name}</span>
                     <span className='text-xl'>{product.category}</span>
                   </div>
-                  <span className='text-xl font-bold'>$450</span>
+                  <span className='text-xl font-bold'>${product.price}</span>
                 </div>
                 <div>
                   {product.excerpt}
