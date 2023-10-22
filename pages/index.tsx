@@ -2,7 +2,7 @@ import Layout from '../components/layout'
 import Post from '../interfaces/post'
 import Intro from '../components/intro'
 import markdownToHtml from '../lib/markdownToHtml'
-import EventSection from '../components/post-section'
+import PostSection from '../components/post-section'
 import Container from '../components/container'
 import { getPosts, getHomeIntroContent, getFooter } from '../lib/strapi'
 import FooterType from '../interfaces/footer'
@@ -19,7 +19,7 @@ export default function Index({ homeIntro, allPosts, footer }: Props) {
       <Layout footer={footer}>
         <Container>
           <Intro homeIntro={homeIntro} />
-          <EventSection posts={allPosts} />
+          <PostSection posts={allPosts} />
         </Container>
       </Layout>
     </>

@@ -33,7 +33,7 @@ const EnlightmentPreview = ({
         {title}
       </td>      
 
-      <td className='text-base italic font-extralight tracking-widest text-transparent group-hover:text-[#f5f1f2]'>
+      <td className='text-sm lg:text-base italic font-extralight tracking-widest text-transparent group-hover:text-[#f5f1f2]'>
         閱讀更多
       </td>
     </tr>

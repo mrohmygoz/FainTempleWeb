@@ -31,9 +31,9 @@ export default function Post({ post, preview, footer }: Props) {
   return (
     <Layout footer={footer}>
       <Container>
-        <section className='mb-24'>
+        <section>
           <SectionTitle>
-            最新消息｜{post.title}
+            最新消息
           </SectionTitle>
 
           <PostHeader

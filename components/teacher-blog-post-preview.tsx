@@ -9,9 +9,8 @@ type Props = {
 }
 
 const TeacherBlogPostPreview = ({ teacherBlogPost }: Props) => {
-  // console.log(teacherBlogPost)
   return (
-    <div className='w-full flex flex-col border-b-[0.5px] border-[#433e482e] pb-10 mb-10'>
+    <div className='w-full flex flex-col border-b-[0.5px] border-[#433e482e] pb-8 mb-8 lg:pb-10 lg:mb-10'>
       <Link  
         as={`/teacher-blog-posts/${teacherBlogPost.slug}`}
         href="/teacher-blog-posts/[slug]"
@@ -20,14 +19,12 @@ const TeacherBlogPostPreview = ({ teacherBlogPost }: Props) => {
           <DateFormatter dateString={teacherBlogPost.date} />
         </div>
         
-        <div className='w-full flex py-4'>
-          <div className='flex-1 h-52 flex-col overflow-hidden'>
-            <div className='w-full text-3xl font-bold leading-tight'>
+        <div className='w-full flex lg:py-4 justify-center items-center'>
+          <div className='flex-1 lg:h-52 flex-col overflow-hidden'>
+            <div className='w-full text-xl lg:text-3xl font-bold leading-tight'>
               {teacherBlogPost.title}
             </div>
-            <div className='py-4'>
-              {/* <div className='py-4 line-clamp-1' dangerouslySetInnerHTML={{ __html: teacherBlogPost.content }} /> */}
-              {/* {teacherBlogPost.content} */}
+            <div className='hidden lg:flex py-4'>
               <p className='line-clamp-5'>
                 {teacherBlogPost.content}
               </p>
@@ -36,7 +33,7 @@ const TeacherBlogPostPreview = ({ teacherBlogPost }: Props) => {
 
           {teacherBlogPost.previewImage !== null ?
           (
-            <div className='w-52 h-52 relative ml-8'>
+            <div className=' w-20 h-20 lg:w-52 lg:h-52 relative ml-8'>
               <Image 
                 src={teacherBlogPost.previewImage}
                 alt={`Cover Image for product: ${teacherBlogPost.title}`}

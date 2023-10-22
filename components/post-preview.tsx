@@ -18,7 +18,7 @@ const PostPreview = ({
   slug,
 }: Props) => {
   return (
-    <div>
+    <div className=''>
       <div className="mb-5">
         <PostCoverImage slug={slug} title={title} src={coverImage} />
       </div>
@@ -31,7 +31,7 @@ const PostPreview = ({
           {title}
         </Link>
       </h4>
-      <div className="text-lg mb-4">
+      <div className="text-lg mb-1">
         日期：<DateFormatter dateString={date} />
       </div>
       <p className="text-lg leading-relaxed mb-4">{excerpt}</p>

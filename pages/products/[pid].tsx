@@ -34,13 +34,13 @@ export default function Product({ product, footer }: Props) {
   return (
     <Layout footer={footer}>
       <Container>
-        <section className='mb-24'>
+        <section className='lg:mb-24'>
           <SectionTitle>
             身心靈產品
           </SectionTitle>
 
-          <div className='flex space-x-8'>
-            <div className='h-96 aspect-square relative flex justify-center overflow-hidden shadow-lg rounded-2xl'>
+          <div className='flex lg:space-x-8 lg:flex-row flex-col'>
+            <div className='lg:w-96 aspect-square relative flex justify-center overflow-hidden shadow-lg rounded-2xl'>
               <Image 
                 alt={`Cover Image for product: ${product.name}`}
                 src={product.coverImage}
@@ -48,20 +48,20 @@ export default function Product({ product, footer }: Props) {
                 style={{objectFit: 'contain'}}
               />
             </div>
-            <div className='w-[32rem] p-6 flex flex-col justify-between shadow-lg rounded-2xl'>
+            <div className='lg:w-[32rem] p-6 flex flex-col lg:justify-between shadow-lg rounded-2xl'>
               <div className='flex flex-col space-y-6'>
-                <div className='flex items-start justify-between'>
+                <div className='flex flex-col lg:flex-row items-start justify-between'>
                   <div className='flex flex-col space-y-2'>
-                    <span className='text-3xl font-extrabold'>{product.name}</span>
-                    <span className='text-xl'>{product.category}</span>
+                    <span className='text-xl lg:text-3xl font-extrabold'>{product.name}</span>
+                    <span className='text-lg lg:text-xl'>{product.category}</span>
                   </div>
-                  <span className='text-xl font-bold'>${product.price}</span>
+                  <span className='text-base lg:text-xl font-bold'>${product.price}</span>
                 </div>
-                <div>
+                <div className='hidden lg:flex'>
                   {product.excerpt}
                 </div>
               </div>
-              <div>
+              <div className='mt-5 lg:mt-0'>
                 <button className='w-full p-2 rounded-lg text-[#f3e8eb] bg-black hover:bg-[#433e4836] hover:text-[#433e48]'
                   onClick={() => {addToCart(product)}}>
                   加入購物車
@@ -70,7 +70,7 @@ export default function Product({ product, footer }: Props) {
             </div>
           </div>
 
-          <h3 className='mt-20 mb-12'>
+          <h3 className='mt-10 lg:mt-20 mb-6 lg:mb-12'>
             《　產品介紹　》
           </h3>
           <ProductDescription content={product.description} />

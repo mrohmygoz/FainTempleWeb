@@ -29,7 +29,7 @@ export default function Post({ teacherBlogPost, footer }: Props) {
   return (
     <Layout footer={footer}>
       <Container>
-        <section className='mb-24'>
+        <section>
           <TeacherBlogPostHeader teacherBlogPost={teacherBlogPost} />
 
           <TeacherBlogPostBody 

@@ -20,7 +20,8 @@ const Layout = ({ preview, children, footer }: Props) => {
       <Meta />
       <Navbar />
       <ShoppingCart cart={ cart } />
-      <div className="min-h-screen mb-20">
+      <div className="lg:min-h-screen mb-10 lg:mb-20">
+        <div className='h-20 lg:h-28'></div>
         <main>{children}</main>
       </div>
       <Footer footer={footer} />

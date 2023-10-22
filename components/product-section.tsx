@@ -9,12 +9,12 @@ type Props = {
 const ProductSection = ({ category, products }: Props) => {
   return (
     <div>
-      <h3 className='mb-12'>
+      <h3 className='mb-6 lg:mb-12'>
         《　{category}　》
       </h3>
 
       {products.length > 0 && 
-        <div className="mb-20 grid grid-cols-4 gap-6">
+        <div className="mb-16 lg:mb-20 grid grid-cols-1 lg:grid-cols-4 gap-6">
           {products.map((p) => (
               <ProductPreview product = {p} />
           ))}

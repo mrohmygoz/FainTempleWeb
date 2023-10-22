@@ -13,11 +13,11 @@ const ProductPreview = ({ product }: Props) => {
   const { addToCart } = useContext(CartContext)
 
   return (
-    <div className='py-5 px-6 shadow-sm rounded-xl flex flex-col space-y-2'>
+    <div className='py-3 px-4 lg:py-5 lg:px-6 shadow-sm rounded-xl flex flex-col space-y-2'>
       <div className="">
         <ProductCoverImage product={product} />
       </div>
-      <div className='text-2xl leading-snug'>
+      <div className='text-xl lg:text-2xl leading-snug'>
         <Link
           as={`/products/${product.pid}`}
           href="/products/[pid]"
@@ -26,7 +26,7 @@ const ProductPreview = ({ product }: Props) => {
           {product.name}
         </Link>
       </div>
-      <div className="text-xl flex justify-between items-center">
+      <div className="text-lg lg:text-xl flex justify-between items-center">
         <div>${product.price}</div>
         <button 
           onClick={() => {addToCart(product)}}

@@ -7,7 +7,7 @@ type Props = {
 
 const PostGallery = ({ posts }: Props) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 md:gap-16 gap-20">
+    <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-16 gap-10">
         {posts.map((post) => (
             <PostPreview
                 key={post.slug}

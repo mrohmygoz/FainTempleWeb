@@ -16,37 +16,32 @@
 
     /* navbar logo */
     h1 {
-        @apply text-5xl md:text-7xl font-bold tracking-tighter leading-tight
+        @apply text-5xl lg:text-7xl font-bold tracking-tighter leading-tight
     }
 
     /* section title & post title */
     h2 {
-        @apply mb-12 text-5xl md:text-[4rem] font-bold tracking-tighter leading-tight
+        @apply mb-6 lg:mb-12 text-4xl lg:text-[4rem] font-bold tracking-tighter leading-tight
     }
 
     /* contact us */
     h3 {
-        @apply text-4xl md:text-6xl font-bold tracking-tighter leading-tight
+        @apply text-3xl lg:text-6xl font-bold tracking-tighter leading-tight
     }
 
     /* post preview title */
     h4 {
-        @apply mb-3 text-3xl leading-snug
-    }
-
-    /* navbar */
-    ul.navbar {
-        @apply border-y-black border-y-[1px] py-1
+        @apply mb-2 lg:mb-3 text-2xl leading-snug
     }
 
     /* navbar */
     li.nav-item {
-        @apply m-2 text-xl tracking-tighter leading-tight hover:text-[#433e4836]
+        @apply lg:m-2 m-8 lg:text-xl text-center text-3xl tracking-tighter leading-tight hover:text-[#433e4836]
     }
 
     /* navbar group */
     li.nav-group-parent {
-        @apply m-2 text-xl tracking-tighter leading-tight 
+        @apply lg:m-2 lg:text-xl tracking-tighter leading-tight 
     }
 
     /* navbar group */
@@ -54,8 +49,12 @@
         @apply py-2 text-xl tracking-tighter leading-tight hover:text-[#433e4836]
     }
 
+    li.nav-group-item-bg {
+        @apply p-2 text-xl tracking-tighter leading-tight hover:text-[#433e4836] bg-[#dad1d3]
+    }
+
     section {
-        @apply py-12
+        @apply py-5 lg:py-12
     }
 
     table {
@@ -63,11 +62,11 @@
     }
     
     th {
-        @apply py-2 px-6 text-xl font-extrabold bg-[#928490d0] text-[#f5f1f2] tracking-widest text-left
+        @apply py-2 lg:py-4 px-4 lg:px-6 text-lg lg:text-xl font-extrabold bg-[#928490d0] text-[#f5f1f2] tracking-widest text-left
     }
 
     td {
-        @apply py-4 px-6 text-xl
+        @apply py-1 lg:py-4 px-4 lg:px-6 text-lg lg:text-xl
     }
 
     tr {

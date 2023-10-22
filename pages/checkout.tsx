@@ -67,9 +67,9 @@ export default function Checkout() {
 
   return (
     <div className="w-screen min-h-screen flex justify-between">
-      <div className="w-[6%]" />
+      <div className="hidden lg:flex lg:w-[6%]" />
       
-      <div className="w-[48%] flex flex-col p-14 items-end">
+      <div className="lg:w-[48%] flex flex-col py-12 px-8 lg:p-14 items-end">
         <div className="w-full flex flex-col">
           <div className="grid grid-cols-1 gap-2 text-lg">
             <div>
@@ -132,7 +132,7 @@ export default function Checkout() {
       </div>
       
       <div className="w-[40%] border-l-[0.5px] border-l-[#8a868d55] bg-[#8a868d11] 
-                    flex flex-col p-14 justify-start">
+                    hidden lg:flex flex-col p-14 justify-start">
         <ul role="list" className="-my-6">
           {cart.map((cartProduct) => (
             <CheckoutItem cartProduct={cartProduct} />
@@ -148,7 +148,7 @@ export default function Checkout() {
         </div>
       </div>
       
-      <div className="w-[6%] bg-[#8a868d11]" />
+      <div className="hidden lg:flex lg:w-[6%] lg:bg-[#8a868d11]" />
     </div>
   )
 }

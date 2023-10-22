@@ -14,9 +14,9 @@ const EnlightmentsGallery = ({ enlightments }: Props) => {
       <table className='mt-4'>
         <thead>
           <tr>
-            <th className='w-[10%]'>發佈日期</th>
+            <th className='lg:w-[10%]'>發佈日期</th>
             <th className=''>標 題</th>
-            <th className='w-[10%]'></th>
+            <th className='lg:w-[10%]'></th>
           </tr>
         </thead>
         <tbody>

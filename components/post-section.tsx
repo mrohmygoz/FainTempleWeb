@@ -7,7 +7,7 @@ type Props = {
   posts: Post[]
 }
 
-const EventSection = ({ posts }: Props) => {
+const PostSection = ({ posts }: Props) => {
   return (
     <section>
       <SectionTitle>
@@ -41,4 +41,4 @@ const EventSection = ({ posts }: Props) => {
   )
 }
 
-export default EventSection
+export default PostSection

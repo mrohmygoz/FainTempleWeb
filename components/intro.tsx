@@ -9,13 +9,17 @@ type Props = {
 export default function Intro ({ homeIntro }: Props) {
   return (
     <section>
-      <Image
-        src={ImgLink}
-        className='w-full'
-        alt=''
-      />
+      <div className='relative w-full aspect-square lg:aspect-[25/9]'>
+        <div className='absolute z-10 bg-[#f3e8eb09] w-full h-full' />
+        <Image
+          src={ImgLink}
+          alt='cover image'
+          fill
+          style={{objectFit: 'cover'}}
+        />
+      </div>
 
-      <div className="mx-auto mt-10 text-center">
+      <div className="mx-auto text-center">
         <div
           className={markdownStyles['markdown']}
           dangerouslySetInnerHTML={{ __html: homeIntro }}

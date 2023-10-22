@@ -12,7 +12,7 @@ const Footer = ({ footer } : Props) => {
   return (
     <footer>
       <Container>
-        <div className="py-20 items-center grid grid-cols-1 md:grid-cols-7 gap-x-14 gap-y-4">
+        <div className=" py-12 lg:py-20 items-center grid grid-cols-1 md:grid-cols-7 gap-x-14 gap-y-4">
           <h3 className='col-span-2'>
             聯絡我們
           </h3>
