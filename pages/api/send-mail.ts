@@ -1,15 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
 
-const AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID
-const AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY
-const SES_SENDER = process.env.SES_SENDER
-
 const client = new SESClient({
   region: "us-east-1",
   credentials: {
-    accessKeyId: AWS_ACCESS_KEY_ID,
-    secretAccessKey: AWS_SECRET_ACCESS_KEY,
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   },
 });
 
@@ -18,6 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   console.log('[INFO] URL: ' + req.url)
   console.log('[INFO] Headers: ' + JSON.stringify(req.headers))
   console.log('[INFO] Body: ' + JSON.stringify(req.body))
+  console.log('[INFO] From/To: ' + process.env.SES_SENDER)
 
   const requestMethod = req.method;
   if (requestMethod !== 'POST') {
@@ -39,7 +36,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   var input = {
     Destination: { /* required */
       ToAddresses: [
-        SES_SENDER,
+        process.env.SES_SENDER,
         /* more items */
       ]
     },
@@ -55,7 +52,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         Data: `法印佛堂新訂單通知【編號：${body.checkoutId}】`
       }
       },
-    Source: SES_SENDER, /* required */
+    Source: process.env.SES_SENDER, /* required */
   };
 
   const command = new SendEmailCommand(input);
