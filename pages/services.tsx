@@ -6,6 +6,7 @@ import SectionTitle from '../components/section-title'
 import Link from 'next/link'
 import { getServicesContent, getFooter } from '../lib/strapi'
 import FooterType from '../interfaces/footer'
+import Head from 'next/head'
 
 type Props = {
     content: string,
@@ -15,6 +16,9 @@ type Props = {
 export default function Services({ content, footer }: Props) {
     return (
       <>
+        <Head>
+          <title>服務項目｜法印佛堂</title>
+        </Head>
         <Layout footer={footer}>
           <Container>
             <section>
@@ -46,5 +50,6 @@ export const getStaticProps = async () => {
   
   return {
     props: { content, footer },
+    revalidate: Number(process.env.REVALIDATE_SECONDS)
   }
 }

@@ -36,6 +36,7 @@ export const getStaticProps = async () => {
   footer.content = await markdownToHtml(footer.content || '')
 
   return {
-    props: { homeIntro, allPosts, footer }
+    props: { homeIntro, allPosts, footer },
+    revalidate: Number(process.env.REVALIDATE_SECONDS)
   }
 }

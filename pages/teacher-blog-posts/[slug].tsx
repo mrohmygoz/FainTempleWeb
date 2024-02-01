@@ -9,6 +9,7 @@ import FooterType from '../../interfaces/footer'
 import TeacherBlogPostType from '../../interfaces/teacherBlogPost'
 import TeacherBlogPostBody from '../../components/teacher-blog-post-body'
 import TeacherBlogPostHeader from '../../components/teacher-blog-post-header'
+import Head from 'next/head'
 
 
 type Props = {
@@ -27,26 +28,31 @@ export default function Post({ teacherBlogPost, footer }: Props) {
     return <ErrorPage statusCode={404} />
   }
   return (
-    <Layout footer={footer}>
-      <Container>
-        <section>
-          <TeacherBlogPostHeader teacherBlogPost={teacherBlogPost} />
+    <>
+      <Head>
+        <title>{teacherBlogPost.title}｜蔡老師之輕聲細語｜法印佛堂</title>
+      </Head>
+      <Layout footer={footer}>
+        <Container>
+          <section>
+            <TeacherBlogPostHeader teacherBlogPost={teacherBlogPost} />
 
-          <TeacherBlogPostBody 
-            content={teacherBlogPost.content} 
-          />
+            <TeacherBlogPostBody 
+              content={teacherBlogPost.content} 
+            />
 
-          <button className='mt-8 py-4 px-6 border border-[#433e48] text-lg leading-snug
-                          hover:bg-[#433e48] hover:text-[#f5f1f2] duration-200 transition-colors'>
-            <Link href='/teacher-blog-posts'>
-              <span>
-                點我查看更多輕聲細語 ＞
-              </span>
-            </Link>
-          </button>
-        </section>
-      </Container>
-    </Layout>
+            <button className='mt-8 py-4 px-6 border border-[#433e48] text-lg leading-snug
+                            hover:bg-[#433e48] hover:text-[#f5f1f2] duration-200 transition-colors'>
+              <Link href='/teacher-blog-posts'>
+                <span>
+                  點我查看更多輕聲細語 ＞
+                </span>
+              </Link>
+            </button>
+          </section>
+        </Container>
+      </Layout>
+    </>
   )
 }
 

@@ -9,6 +9,7 @@ import { getEnlightment, getEnlightmentSlugs, getFooter } from '../../lib/strapi
 import FooterType from '../../interfaces/footer'
 import EnlightmentBody from '../../components/enlightment-body'
 import EnlightmentType from '../../interfaces/enlightment'
+import Head from 'next/head'
 
 type Props = {
   enlightment: EnlightmentType
@@ -28,28 +29,33 @@ export default function Announcement({ enlightment, footer }: Props) {
   }
 
   return (
-    <Layout footer={footer}>
-      <Container>
-        <section>
-          <SectionTitle>
-            佛菩薩開示法語｜<br/>{enlightment.title}
-          </SectionTitle>
+    <>
+      <Head>
+        <title>{enlightment.title}｜佛菩薩開示法語｜法印佛堂</title>
+      </Head>
+      <Layout footer={footer}>
+        <Container>
+          <section>
+            <SectionTitle>
+              佛菩薩開示法語｜<br/>{enlightment.title}
+            </SectionTitle>
 
-          <EnlightmentBody
-            content={enlightment.content}
-          />
+            <EnlightmentBody
+              content={enlightment.content}
+            />
 
-          <button className='mt-8 py-4 px-6 border border-[#433e48] text-lg leading-snug
-                          hover:bg-[#433e48] hover:text-[#f5f1f2] duration-200 transition-colors'>
-            <Link href='/enlightments'>
-              <span>
-                點我查看更多佛菩薩開示法語 ＞
-              </span>
-            </Link>
-          </button>
-        </section>
-      </Container>
-    </Layout>
+            <button className='mt-8 py-4 px-6 border border-[#433e48] text-lg leading-snug
+                            hover:bg-[#433e48] hover:text-[#f5f1f2] duration-200 transition-colors'>
+              <Link href='/enlightments'>
+                <span>
+                  點我查看更多佛菩薩開示法語 ＞
+                </span>
+              </Link>
+            </button>
+          </section>
+        </Container>
+      </Layout>
+    </>
   )
 }
 

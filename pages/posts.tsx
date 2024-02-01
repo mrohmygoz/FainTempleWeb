@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { getPosts, getFooter } from '../lib/strapi'
 import FooterType from '../interfaces/footer'
 import markdownToHtml from '../lib/markdownToHtml'
+import Head from 'next/head'
 
 type Props = {
   allPosts: Post[], 
@@ -16,6 +17,9 @@ type Props = {
 export default function Posts({ allPosts, footer }: Props) {
     return (
       <>
+        <Head>
+          <title>最新消息｜法印佛堂</title>
+        </Head>
         <Layout footer={footer}>
           <Container>
             <section>
@@ -55,5 +59,6 @@ export const getStaticProps = async () => {
   
   return {
     props: { allPosts, footer },
+    revalidate: Number(process.env.REVALIDATE_SECONDS)
   }
 }

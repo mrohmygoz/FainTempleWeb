@@ -7,6 +7,7 @@ import { getEnlightments, getFooter } from '../lib/strapi'
 import FooterType from '../interfaces/footer'
 import Layout from '../components/layout'
 import EnlightmentsGallery from '../components/enlightments-gallery'
+import Head from 'next/head'
 
 type Props = {
     allEnlightments: EnlightmentType[],
@@ -16,6 +17,9 @@ type Props = {
 export default function Enlightments({ allEnlightments, footer }: Props) {
     return (
       <>
+        <Head>
+          <title>佛菩薩開示法語｜法印佛堂</title>
+        </Head>
         <Layout footer={footer}>
           <Container>
             <section>

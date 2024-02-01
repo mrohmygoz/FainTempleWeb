@@ -6,6 +6,7 @@ import { getFooter, getProductsForPreview } from "../lib/strapi";
 import ProductSection from "../components/product-section";
 import ProductType from "../interfaces/product";
 import SectionTitle from "../components/section-title";
+import Head from "next/head";
 
 type CategoryProducts = {
   category: string
@@ -20,6 +21,9 @@ type Props = {
 export default function Shop({ categoryProducts, footer }: Props) {
   return (
     <>
+      <Head>  
+        <title>身心靈產品｜法印佛堂</title>
+      </Head>
       <Layout footer={footer}>
         <Container>
           <section>
@@ -63,5 +67,6 @@ export const getStaticProps = async () => {
 
   return {
     props: { categoryProducts, footer },
+    revalidate: Number(process.env.REVALIDATE_SECONDS)
   };
 };

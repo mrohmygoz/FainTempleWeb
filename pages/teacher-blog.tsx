@@ -8,6 +8,7 @@ import markdownToHtml from '../lib/markdownToHtml'
 import markdownToPlain from '../lib/markdownToPlain'
 import TeacherBlogPostType from '../interfaces/teacherBlogPost'
 import TeacherBlogGallery from '../components/teacher-blog-gallery'
+import Head from 'next/head'
 
 type Props = {
   allPosts: TeacherBlogPostType[], 
@@ -17,6 +18,9 @@ type Props = {
 export default function TeacherBlog({ allPosts, footer }: Props) {
     return (
       <>
+        <Head>
+          <title>蔡老師之輕聲細語｜法印佛堂</title>
+        </Head>
         <Layout footer={footer}>
           <Container>
             <section>
@@ -60,5 +64,6 @@ export const getStaticProps = async () => {
   
   return {
     props: { allPosts, footer },
+    revalidate: Number(process.env.REVALIDATE_SECONDS)
   }
 }

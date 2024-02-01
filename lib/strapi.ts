@@ -234,12 +234,12 @@ export async function getProductIds(): Promise<any> {
 
 export async function getProductsForPreview(): Promise<any> {
     let url = `${STRAPI_ENDPOINT}/api/temple-products?populate=*`
-     + '&fields[0]=pid'
-     + '&fields[1]=category'
-     + '&fields[2]=name'
-     + '&fields[3]=coverImage'
-     + '&fields[4]=price'
-     + '&fields[5]=inStock'
+    //  + '&fields[0]=pid'
+    //  + '&fields[1]=category'
+    //  + '&fields[2]=name'
+    //  + '&fields[3]=coverImage'
+    //  + '&fields[4]=price'
+    //  + '&fields[5]=inStock'
     const response = await fetch(url, {
         headers: {
             'Authorization': `Bearer ${STRAPI_API_TOKEN}`
@@ -247,7 +247,9 @@ export async function getProductsForPreview(): Promise<any> {
     })
   
     if (!response.ok) {
-      throw new Error(`getProductsForPreview API request failed with status ${response.status}`);
+        let body = await response.json()
+        console.log("[ERROR] " + JSON.stringify(body))
+        throw new Error(`getProductsForPreview API request failed with status ${response.status}`);
     }
   
     let body = await response.json()

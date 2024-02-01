@@ -3,6 +3,7 @@ import { CartContext } from "../context/shop-context";
 import { useForm, SubmitHandler } from "react-hook-form";
 import CheckoutItem from "../components/checkout-item";
 import { useRouter } from 'next/router'
+import Head from "next/head";
 
 type IFormInput = {
   fullName: string;
@@ -66,89 +67,95 @@ export default function Checkout() {
   }
 
   return (
-    <div className="w-screen min-h-screen flex justify-between">
-      <div className="hidden lg:flex lg:w-[6%]" />
-      
-      <div className="lg:w-[48%] flex flex-col py-12 px-8 lg:p-14 items-end">
-        <div className="w-full flex flex-col">
-          <div className="grid grid-cols-1 gap-2 text-lg">
-            <div>
-              感謝您選購我們的商品！
+    <>
+      <Head>
+        <title>結帳表單｜法印佛堂</title>
+      </Head>
+      <div className="w-screen min-h-screen flex justify-between">
+        <div className="hidden lg:flex lg:w-[6%]" />
+        
+        <div className="lg:w-[48%] flex flex-col py-12 px-8 lg:p-14 items-end">
+          <div className="w-full flex flex-col">
+            <div className="grid grid-cols-1 gap-2 text-lg">
+              <div>
+                感謝您選購我們的商品！
+              </div>
+              <div>
+                請填寫以下表單，提交後將會有專人和您聯絡，謝謝！
+              </div>
             </div>
-            <div>
-              請填寫以下表單，提交後將會有專人和您聯絡，謝謝！
-            </div>
-          </div>
-          <form 
-            className="flex flex-col" 
-            onSubmit={handleSubmit(onSubmit, onError)}>
-            <label>基本資料</label>
-            <input 
-              placeholder="中文全名"
-              {...register("fullName", { required: '您尚未填寫中文全名' })} 
-            />
-            <input
-              placeholder="電子郵件"
-              {...register("email", {
-                required: '您尚未填寫電子郵件', 
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i ,
-                  message: '電子郵件格式錯誤'
-                }
-              })} 
-            />
-            <label>寄送地址</label>
-            <input 
-              placeholder="國家"
-              {...register("country", { required: '您尚未填寫國家' })} 
-            />
-            <div className="grid grid-cols-2 gap-4">
+            <form 
+              className="flex flex-col" 
+              onSubmit={handleSubmit(onSubmit, onError)}>
+              <label>基本資料</label>
               <input 
-                placeholder="城市"
-                {...register("city", { required: '您尚未填寫城市' })} 
+                placeholder="中文全名"
+                {...register("fullName", { required: '您尚未填寫中文全名' })} 
               />
-              <input 
-                placeholder="郵遞區號"
-                {...register("postalCode", { 
-                  required: '您尚未填寫郵遞區號',
+              <input
+                placeholder="電子郵件"
+                {...register("email", {
+                  required: '您尚未填寫電子郵件', 
                   pattern: {
-                    value: /^\d+$/i ,
-                    message: '郵遞區號格式錯誤'
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i ,
+                    message: '電子郵件格式錯誤'
                   }
                 })} 
               />
-            </div>
-            <input 
-              placeholder="地址"
-              {...register("address", { required: '您尚未填寫地址' })} 
-            />
-            <button type="submit"
-                    className="w-full bg-black text-white hover:bg-gray-800 
-                              p-2 mt-8 rounded-md shadow-sm text-lg">
-              提交表單
-            </button>
-          </form>
+              <label>寄送地址</label>
+              <input 
+                placeholder="國家"
+                {...register("country", { required: '您尚未填寫國家' })} 
+              />
+              <div className="grid grid-cols-2 gap-4">
+                <input 
+                  placeholder="城市"
+                  {...register("city", { required: '您尚未填寫城市' })} 
+                />
+                <input 
+                  placeholder="郵遞區號"
+                  {...register("postalCode", { 
+                    required: '您尚未填寫郵遞區號',
+                    pattern: {
+                      value: /^\d+$/i ,
+                      message: '郵遞區號格式錯誤'
+                    }
+                  })} 
+                />
+              </div>
+              <input 
+                placeholder="地址"
+                {...register("address", { required: '您尚未填寫地址' })} 
+              />
+              <button type="submit"
+                      className="w-full bg-black text-white hover:bg-gray-800 
+                                p-2 mt-8 rounded-md shadow-sm text-lg">
+                提交表單
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
-      
-      <div className="w-[40%] border-l-[0.5px] border-l-[#8a868d55] bg-[#8a868d11] 
-                    hidden lg:flex flex-col p-14 justify-start">
-        <ul role="list" className="-my-6">
-          {cart.map((cartProduct) => (
-            <CheckoutItem cartProduct={cartProduct} />
-          ))}
-        </ul>
-        <div className="mt-16 py-8 flex justify-between text-xl border-t-[1px] border-[#433e48]">
-          <span>
-            台幣總計（不含運費）
-          </span>
-          <span>
-            ${getSubTotal()}
-          </span>
+        
+        <div className="w-[40%] border-l-[0.5px] border-l-[#8a868d55] bg-[#8a868d11] 
+                      hidden lg:flex flex-col p-14 justify-start">
+          <ul role="list" className="-my-6">
+            {cart.map((cartProduct) => (
+              <CheckoutItem cartProduct={cartProduct} />
+            ))}
+          </ul>
+          <div className="mt-16 py-8 flex justify-between text-xl border-t-[1px] border-[#433e48]">
+            <span>
+              台幣總計（不含運費）
+            </span>
+            <span>
+              ${getSubTotal()}
+            </span>
+          </div>
         </div>
+        
+        <div className="hidden lg:flex lg:w-[6%] lg:bg-[#8a868d11]" />
       </div>
-      
-      <div className="hidden lg:flex lg:w-[6%] lg:bg-[#8a868d11]" />
-    </div>
+    </>
+    
   )
 }

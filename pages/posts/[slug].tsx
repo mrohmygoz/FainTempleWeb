@@ -10,6 +10,7 @@ import SectionTitle from '../../components/section-title'
 import Link from 'next/link'
 import { getPost, getPostSlugs, getFooter } from '../../lib/strapi'
 import FooterType from '../../interfaces/footer'
+import Head from 'next/head'
 
 
 type Props = {
@@ -29,34 +30,39 @@ export default function Post({ post, preview, footer }: Props) {
     return <ErrorPage statusCode={404} />
   }
   return (
-    <Layout footer={footer}>
-      <Container>
-        <section>
-          <SectionTitle>
-            最新消息
-          </SectionTitle>
+    <>
+      <Head>
+        <title>{post.title}｜最新消息｜法印佛堂</title>
+      </Head>
+      <Layout footer={footer}>
+        <Container>
+          <section>
+            <SectionTitle>
+              最新消息｜<br/>{post.title}
+            </SectionTitle>
 
-          <PostHeader
-            title={post.title}
-            coverImage={post.coverImage}
-            date={post.date}
-          />
+            <PostHeader
+              title={post.title}
+              coverImage={post.coverImage}
+              date={post.date}
+            />
 
-          <PostBody 
-            content={post.content} 
-          />
+            <PostBody 
+              content={post.content} 
+            />
 
-          <button className='mt-8 py-4 px-6 border border-[#433e48] text-lg leading-snug
-                          hover:bg-[#433e48] hover:text-[#f5f1f2] duration-200 transition-colors'>
-            <Link href='/posts'>
-              <span>
-                點我查看更多消息 ＞
-              </span>
-            </Link>
-          </button>
-        </section>
-      </Container>
-    </Layout>
+            <button className='mt-8 py-4 px-6 border border-[#433e48] text-lg leading-snug
+                            hover:bg-[#433e48] hover:text-[#f5f1f2] duration-200 transition-colors'>
+              <Link href='/posts'>
+                <span>
+                  點我查看更多消息 ＞
+                </span>
+              </Link>
+            </button>
+          </section>
+        </Container>
+      </Layout>
+    </>
   )
 }
 
