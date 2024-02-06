@@ -1,5 +1,5 @@
 .markdown {
-  @apply text-lg leading-relaxed font-extralight;
+  @apply font-extralight;
 }
 
 .markdown p,
@@ -9,22 +9,31 @@
   @apply my-2 lg:my-6 text-lg lg:text-xl
 }
 
+.markdown li {
+  @apply my-1
+}
+
 .markdown ul {
-  @apply border-t-[#2424247e] border-b-[#2424247e]
+  @apply list-disc list-inside
+}
+
+.markdown ol {
+  @apply list-decimal list-inside
 }
 
 .markdown h1 {
-  @apply text-3xl lg:text-6xl mt-6 mb-2 lg:mt-12 lg:mb-4 leading-snug font-bold tracking-tighter;
+  @apply text-5xl md:text-6xl mt-12 mb-4 
+          font-bold tracking-tighter;
 }
 
 .markdown h2 {
-  @apply text-2xl lg:text-4xl mt-6 mb-2 lg:mt-12 lg:mb-4 leading-snug;
+  @apply text-3xl md:text-4xl mt-12 mb-4 ;
 }
 
 .markdown h3 {
-  @apply text-xl lg:text-3xl mt-4 mb-2 lg:mt-8 lg:mb-4 leading-snug;
+  @apply text-2xl md:text-3xl mt-8 mb-4 ;
 }
 
 .markdown img {
-  @apply lg:w-[40%] w-full
+  @apply md:w-[40%] w-full
 }

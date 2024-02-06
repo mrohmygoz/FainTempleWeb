@@ -1,7 +1,7 @@
-import { remark } from 'remark'
-import html from 'remark-html'
+import showdown from 'showdown'
 
 export default async function markdownToHtml(markdown: string) {
-  const result = await remark().use(html).process(markdown)
-  return result.toString()
+  const converter = new showdown.Converter({simpleLineBreaks: true});
+  const content = converter.makeHtml(markdown)
+  return content;
 }
